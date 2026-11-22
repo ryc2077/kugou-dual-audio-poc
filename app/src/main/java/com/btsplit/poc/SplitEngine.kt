@@ -341,8 +341,8 @@ class SplitEngine(private val context: Context) {
      */
     private fun startRouteCheck(states: List<OutputState>, session: Int, log: (String) -> Unit) {
         Thread {
-            try { Thread.sleep(500) } catch (_: InterruptedException) { return }
-            if (!running || sessionId != session) return
+            try { Thread.sleep(500) } catch (_: InterruptedException) { return@Thread }
+            if (!running || sessionId != session) return@Thread
             for (state in states) {
                 if (!state.active) continue
                 val routed = try { state.track.routedDevice } catch (_: Exception) { null }
