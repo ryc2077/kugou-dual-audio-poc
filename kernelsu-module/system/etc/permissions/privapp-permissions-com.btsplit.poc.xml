@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 特权 App 白名单：只有 /system/priv-app 里的 App 才能拿到这些权限，
+     且必须在这里声明，否则系统启动时会拒绝授予并打 log。
+     MODIFY_AUDIO_ROUTING 是 signature|privileged，对应 setPreferredDevicesForStrategy()。 -->
+<permissions>
+    <privapp-permissions package="com.btsplit.poc">
+        <permission name="android.permission.MODIFY_AUDIO_ROUTING" />
+        <permission name="android.permission.MODIFY_AUDIO_SETTINGS" />
+        <permission name="android.permission.BLUETOOTH_CONNECT" />
+    </privapp-permissions>
+</permissions>

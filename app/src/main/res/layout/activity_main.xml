@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/logScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BT Split POC — 双蓝牙多输出（Hifinis 式）"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="每路输出独立设置声道模式、音量、同步修正 trim。默认：输出 1 只出左声道（440Hz），输出 2 只出右声道（660Hz）。播放中改声道/音量/trim 会立即生效，不重建输出。"
+            android:layout_marginTop="4dp" />
+
+        <Button
+            android:id="@+id/refreshBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="1. Refresh — 列出蓝牙 A2DP 设备" />
+
+        <!-- 输出 1 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出 1 — 设备"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp" />
+
+        <Spinner
+            android:id="@+id/leftSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出 1 — 声道模式"
+            android:layout_marginTop="8dp" />
+
+        <Spinner
+            android:id="@+id/modeSpinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/volLabel1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出 1 音量：100%"
+            android:layout_marginTop="8dp" />
+
+        <SeekBar
+            android:id="@+id/volBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/delayLabel1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出 1 同步修正（trim）：+0ms（-400..+400，+为更晚）"
+            android:layout_marginTop="8dp" />
+
+        <SeekBar
+            android:id="@+id/delayBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- 输出 2 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出 2 — 设备"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp" />
+
+        <Spinner
+            android:id="@+id/rightSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出 2 — 声道模式"
+            android:layout_marginTop="8dp" />
+
+        <Spinner
+            android:id="@+id/modeSpinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/volLabel2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出 2 音量：100%"
+            android:layout_marginTop="8dp" />
+
+        <SeekBar
+            android:id="@+id/volBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/delayLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输出 2 同步修正（trim）：+0ms（-400..+400，+为更晚）"
+            android:layout_marginTop="8dp" />
+
+        <SeekBar
+            android:id="@+id/delayBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/toneBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="2. Play Test Tone — 按上面设置播 10 秒测试音" />
+
+        <Button
+            android:id="@+id/swapBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Swap L/R — 左右设备对调再测一次" />
+
+        <Button
+            android:id="@+id/pickBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. Pick File — 选本地音频文件（可选）" />
+
+        <Button
+            android:id="@+id/fileBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Play File — 按上面设置播这个文件" />
+
+        <Button
+            android:id="@+id/stopBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stop" />
+
+        <TextView
+            android:id="@+id/logView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="12sp"
+            android:typeface="monospace" />
+
+    </LinearLayout>
+</ScrollView>

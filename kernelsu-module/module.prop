@@ -1,0 +1,6 @@
+id=btsplit-poc
+name=BT Split POC
+version=v0.1.0
+versionCode=1
+author=Muse POC
+description=Concept validation: split stereo L/R to two Bluetooth A2DP devices. Installs the POC player as a priv-app and disables A2DP hardware offload so two software A2DP streams can open. KernelSU only.

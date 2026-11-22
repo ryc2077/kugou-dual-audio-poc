@@ -1,0 +1,40 @@
+name: Android CI
+
+# 构建 POC 的 debug APK，验证代码能编译、APK 能打出来。
+# 注意：本仓库没有 Gradle wrapper（gradlew），所以用
+# gradle/gradle-build-action 以固定 Gradle 版本运行，不依赖 wrapper。
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build debug APK (no wrapper)
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: "8.7"
+          arguments: assembleDebug --stacktrace
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
