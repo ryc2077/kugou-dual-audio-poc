@@ -3,6 +3,9 @@ name: Android CI
 # 构建 POC 的 debug APK，验证代码能编译、APK 能打出来。
 # 注意：本仓库没有 Gradle wrapper（gradlew），所以用
 # gradle/gradle-build-action 以固定 Gradle 版本运行，不依赖 wrapper。
+# Android SDK 不用 android-actions/setup-android（在 ubuntu-26.04 runner 上
+# sdkmanager 找不到 'tools' 包而失败），改用 runner 自带的 SDK
+# ($ANDROID_SDK_ROOT)，只补装 platform-34 / build-tools。
 on:
   push:
     branches: ["main"]
@@ -23,8 +26,13 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Accept SDK licenses and ensure platform 34
+        run: |
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls "$ANDROID_SDK_ROOT/cmdline-tools" || true
+          yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses || true
+          "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0" "platform-tools"
 
       - name: Build debug APK (no wrapper)
         uses: gradle/gradle-build-action@v3
